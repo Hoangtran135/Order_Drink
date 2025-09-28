@@ -1,7 +1,7 @@
-# Order Drink - Ứng dụng đặt đồ uống trực tuyến
+# Hoàng Trần - Ứng dụng đặt đồ uống trực tuyến
 
 ## Mô tả
-Ứng dụng web đặt đồ uống trực tuyến được xây dựng bằng TypeScript và Node.js với Express framework.
+Ứng dụng web đặt đồ uống trực tuyến được xây dựng bằng TypeScript và Node.js với Express framework. Phát triển bởi Hoàng Trần.
 
 ## Tính năng
 
@@ -21,7 +21,7 @@
 ## Cấu trúc dự án
 
 ```
-Order-drink/
+hoang-tran-drink/
 ├── src/
 │   ├── server.ts              # Server chính
 │   ├── types/
@@ -119,6 +119,9 @@ Mở trình duyệt và truy cập: `http://localhost:3000`
 - CSS3
 - Vanilla JavaScript
 - Font Awesome (icons)
+
+## Tác giả
+**Hoàng Trần** - Full Stack Developer
 
 ## Tính năng bảo mật
 - Mã hóa mật khẩu với bcrypt
