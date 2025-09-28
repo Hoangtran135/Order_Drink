@@ -5,7 +5,7 @@ export const users: User[] = [
     id: 1,
     username: 'admin',
     email: 'admin@example.com',
-    password: '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+    password: '123456', // password
     fullName: 'Admin User',
     phone: '0123456789',
     address: '123 Main St, City'
@@ -14,7 +14,7 @@ export const users: User[] = [
     id: 2,
     username: 'user1',
     email: 'user1@example.com',
-    password: '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+    password: '123456', // password
     fullName: 'John Doe',
     phone: '0987654321',
     address: '456 Oak Ave, Town'
