@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Drink - Đặt Đồ Uống Online</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-coffee"></i>
+                <span>Order Drink</span>
+            </div>
+            <nav class="nav">
+                <a href="#" class="nav-link" data-page="home">Trang chủ</a>
+                <a href="#" class="nav-link" data-page="products">Sản phẩm</a>
+                <a href="#" class="nav-link" data-page="cart" id="cart-link">
+                    <i class="fas fa-shopping-cart"></i>
+                    Giỏ hàng <span class="cart-count">0</span>
+                </a>
+                <a href="#" class="nav-link" data-page="orders" id="orders-link" style="display: none;">
+                    <i class="fas fa-list"></i>
+                    Đơn hàng
+                </a>
+                <a href="#" class="nav-link" data-page="about">Thông tin</a>
+                <div class="auth-buttons" id="auth-buttons">
+                    <button class="btn btn-outline" id="login-btn">Đăng nhập</button>
+                    <button class="btn btn-primary" id="register-btn">Đăng ký</button>
+                </div>
+                <div class="user-info" id="user-info" style="display: none;">
+                    <span id="user-name"></span>
+                    <button class="btn btn-outline" id="logout-btn">Đăng xuất</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Home Page -->
+        <div id="home-page" class="page active">
+            <section class="hero">
+                <div class="container">
+                    <h1>Chào mừng đến với Order Drink</h1>
+                    <p>Đặt đồ uống ngon, tươi mới mỗi ngày</p>
+                    <button class="btn btn-primary btn-large" data-page="products">Xem sản phẩm</button>
+                </div>
+            </section>
+            
+            <section class="featured-products">
+                <div class="container">
+                    <h2>Sản phẩm nổi bật</h2>
+                    <div class="products-grid" id="featured-products">
+                        <!-- Products will be loaded here -->
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Products Page -->
+        <div id="products-page" class="page">
+            <div class="container">
+                <h1>Sản phẩm</h1>
+                <div class="filter-tabs">
+                    <button class="filter-btn active" data-category="all">Tất cả</button>
+                    <button class="filter-btn" data-category="Coffee">Cà phê</button>
+                    <button class="filter-btn" data-category="Tea">Trà</button>
+                    <button class="filter-btn" data-category="Smoothie">Sinh tố</button>
+                    <button class="filter-btn" data-category="Juice">Nước ép</button>
+                </div>
+                <div class="products-grid" id="products-grid">
+                    <!-- Products will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Detail Page -->
+        <div id="product-detail-page" class="page">
+            <div class="container">
+                <button class="btn btn-outline" id="back-to-products">
+                    <i class="fas fa-arrow-left"></i> Quay lại
+                </button>
+                <div class="product-detail" id="product-detail">
+                    <!-- Product detail will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Cart Page -->
+        <div id="cart-page" class="page">
+            <div class="container">
+                <h1>Giỏ hàng</h1>
+                <div class="cart-content" id="cart-content">
+                    <!-- Cart items will be loaded here -->
+                </div>
+                <div class="cart-actions" id="cart-actions" style="display: none;">
+                    <div class="cart-total">
+                        <strong>Tổng cộng: <span id="cart-total">0</span> VNĐ</strong>
+                    </div>
+                    <button class="btn btn-primary btn-large" id="checkout-btn">Thanh toán</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Checkout Page -->
+        <div id="checkout-page" class="page">
+            <div class="container">
+                <h1>Thanh toán</h1>
+                <div class="checkout-form">
+                    <form id="checkout-form">
+                        <div class="form-group">
+                            <label for="delivery-address">Địa chỉ giao hàng:</label>
+                            <input type="text" id="delivery-address" name="deliveryAddress" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Số điện thoại:</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="order-summary">
+                            <h3>Tóm tắt đơn hàng</h3>
+                            <div id="order-items"></div>
+                            <div class="order-total">
+                                <strong>Tổng cộng: <span id="order-total">0</span> VNĐ</strong>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-large">Đặt hàng</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Orders Page -->
+        <div id="orders-page" class="page">
+            <div class="container">
+                <h1>Đơn hàng của tôi</h1>
+                <div class="orders-list" id="orders-list">
+                    <!-- Orders will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- About Page -->
+        <div id="about-page" class="page">
+            <div class="container">
+                <h1>Thông tin</h1>
+                <div class="about-content">
+                    <h2>Về chúng tôi</h2>
+                    <p>Order Drink là ứng dụng đặt đồ uống trực tuyến, mang đến cho bạn những thức uống tươi ngon và chất lượng cao.</p>
+                    
+                    <h2>Liên hệ</h2>
+                    <p><i class="fas fa-phone"></i> Hotline: 1900-1234</p>
+                    <p><i class="fas fa-envelope"></i> Email: info@orderdrink.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Địa chỉ: 123 Đường ABC, Quận XYZ, TP.HCM</p>
+                    
+                    <h2>Giờ mở cửa</h2>
+                    <p>Thứ 2 - Chủ nhật: 7:00 - 22:00</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Đăng nhập</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-username">Tên đăng nhập:</label>
+                    <input type="text" id="login-username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Mật khẩu:</label>
+                    <input type="password" id="login-password" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Đăng nhập</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="register-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Đăng ký</h2>
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="register-username">Tên đăng nhập:</label>
+                    <input type="text" id="register-username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-email">Email:</label>
+                    <input type="email" id="register-email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Mật khẩu:</label>
+                    <input type="password" id="register-password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-fullname">Họ tên:</label>
+                    <input type="text" id="register-fullname" name="fullName" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-phone">Số điện thoại:</label>
+                    <input type="tel" id="register-phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-address">Địa chỉ:</label>
+                    <input type="text" id="register-address" name="address" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Đăng ký</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loading" class="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Notification -->
+    <div id="notification" class="notification"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
