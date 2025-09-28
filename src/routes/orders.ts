@@ -56,6 +56,10 @@ router.post('/', requireAuth, (req, res) => {
     }
   });
   
+  const deliveryFee = 10000; // Phí giao hàng cố định
+  const discount = 0; // Chưa áp dụng mã giảm giá
+  const finalAmount = totalAmount + deliveryFee - discount;
+
   const newOrder: Order = {
     id: orders.length + 1,
     userId: userId!,
@@ -64,7 +68,12 @@ router.post('/', requireAuth, (req, res) => {
     status: 'pending',
     createdAt: new Date(),
     deliveryAddress,
-    phone
+    phone,
+    paymentMethod: 'cash', // Mặc định thanh toán tiền mặt
+    paymentStatus: 'pending',
+    deliveryFee,
+    discount,
+    finalAmount
   };
   
   orders.push(newOrder);

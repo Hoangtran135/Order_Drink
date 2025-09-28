@@ -8,16 +8,34 @@ const router = express.Router();
 router.post('/login', (req, res) => {
   const { username, password } = req.body;
   
+  console.log('Login attempt:', { username, password: '***' });
+  
   const user = users.find(u => u.username === username);
   if (!user) {
+    console.log('User not found:', username);
     return res.status(401).json({ message: 'Tên đăng nhập không tồn tại' });
   }
 
-  const isValidPassword = bcrypt.compareSync(password, user.password);
+  console.log('User found:', { id: user.id, username: user.username, passwordType: user.password.startsWith('$') ? 'hashed' : 'plain' });
+
+  // Check if password is hashed (starts with $2a$ or $2b$) or plain text
+  let isValidPassword = false;
+  if (user.password.startsWith('$2a$') || user.password.startsWith('$2b$')) {
+    // Password is hashed, use bcrypt
+    isValidPassword = bcrypt.compareSync(password, user.password);
+    console.log('Using bcrypt comparison');
+  } else {
+    // Password is plain text (for mock data)
+    isValidPassword = password === user.password;
+    console.log('Using plain text comparison:', { provided: password, stored: user.password });
+  }
+
   if (!isValidPassword) {
+    console.log('Invalid password');
     return res.status(401).json({ message: 'Mật khẩu không đúng' });
   }
 
+  console.log('Login successful for user:', user.username);
   req.session.userId = user.id;
   req.session.username = user.username;
 

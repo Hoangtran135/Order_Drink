@@ -11,6 +11,15 @@ const auth_1 = require("./routes/auth");
 const products_1 = require("./routes/products");
 const cart_1 = require("./routes/cart");
 const orders_1 = require("./routes/orders");
+const payment_1 = require("./routes/payment");
+const reviews_1 = require("./routes/reviews");
+const promotions_1 = require("./routes/promotions");
+const favorites_1 = require("./routes/favorites");
+const notifications_1 = require("./routes/notifications");
+const admin_1 = require("./routes/admin");
+const recommendations_1 = require("./routes/recommendations");
+const delivery_1 = require("./routes/delivery");
+const analytics_1 = require("./routes/analytics");
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 3000;
 // Middleware
@@ -30,6 +39,15 @@ app.use('/api/auth', auth_1.authRoutes);
 app.use('/api/products', products_1.productRoutes);
 app.use('/api/cart', cart_1.cartRoutes);
 app.use('/api/orders', orders_1.orderRoutes);
+app.use('/api/payment', payment_1.paymentRoutes);
+app.use('/api/reviews', reviews_1.reviewRoutes);
+app.use('/api/promotions', promotions_1.promotionRoutes);
+app.use('/api/favorites', favorites_1.favoriteRoutes);
+app.use('/api/notifications', notifications_1.notificationRoutes);
+app.use('/api/admin', admin_1.adminRoutes);
+app.use('/api/recommendations', recommendations_1.recommendationRoutes);
+app.use('/api/delivery', delivery_1.deliveryRoutes);
+app.use('/api/analytics', analytics_1.analyticsRoutes);
 // Serve static files
 app.get('/', (req, res) => {
     res.sendFile(path_1.default.join(__dirname, '../public/index.html'));

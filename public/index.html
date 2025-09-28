@@ -15,40 +15,114 @@
                 <i class="fas fa-coffee"></i>
                 <span>Order Drink</span>
             </div>
-            <nav class="nav">
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav class="nav" id="nav">
                 <a href="#" class="nav-link" data-page="home">Trang chủ</a>
                 <a href="#" class="nav-link" data-page="products">Sản phẩm</a>
                 <a href="#" class="nav-link" data-page="cart" id="cart-link">
                     <i class="fas fa-shopping-cart"></i>
                     Giỏ hàng <span class="cart-count">0</span>
                 </a>
-                <a href="#" class="nav-link" data-page="orders" id="orders-link" style="display: none;">
-                    <i class="fas fa-list"></i>
-                    Đơn hàng
-                </a>
-                <a href="#" class="nav-link" data-page="about">Thông tin</a>
+                
+                <!-- Dropdown menu for additional items -->
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">
+                        Khác <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="#" class="dropdown-item" data-page="profile" id="profile-link" style="display: none;">
+                            <i class="fas fa-user"></i>
+                            Thông tin cá nhân
+                        </a>
+                        <a href="#" class="dropdown-item" data-page="orders" id="orders-link" style="display: none;">
+                            <i class="fas fa-list"></i>
+                            Đơn hàng
+                        </a>
+                        <a href="#" class="dropdown-item" data-page="favorites" id="favorites-link" style="display: none;">
+                            <i class="fas fa-heart"></i>
+                            Yêu thích
+                        </a>
+                        <a href="#" class="dropdown-item" data-page="notifications" id="notifications-link" style="display: none;">
+                            <i class="fas fa-bell"></i>
+                            Thông báo <span class="notification-count">0</span>
+                        </a>
+                        <a href="#" class="dropdown-item" data-page="admin" id="admin-link" style="display: none;">
+                            <i class="fas fa-cog"></i>
+                            Quản trị
+                        </a>
+                        <a href="#" class="dropdown-item" data-page="about">
+                            <i class="fas fa-info-circle"></i>
+                            Thông tin
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Search Bar -->
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="Tìm kiếm sản phẩm..." class="search-input">
+                    <button id="search-btn" class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                
                 <div class="auth-buttons" id="auth-buttons">
-                    <button class="btn btn-outline" id="login-btn">Đăng nhập</button>
-                    <button class="btn btn-primary" id="register-btn">Đăng ký</button>
+                    <a href="#" class="btn btn-outline" data-page="login" id="login-btn">
+                        <i class="fas fa-sign-in-alt"></i> Đăng nhập
+                    </a>
+                    <a href="#" class="btn btn-primary" data-page="register" id="register-btn">
+                        <i class="fas fa-user-plus"></i> Đăng ký
+                    </a>
                 </div>
                 <div class="user-info" id="user-info" style="display: none;">
-                    <span id="user-name"></span>
-                    <button class="btn btn-outline" id="logout-btn">Đăng xuất</button>
+                    <div class="user-dropdown">
+                        <span id="user-name" class="user-name">
+                            <i class="fas fa-user-circle"></i>
+                            <span id="user-display-name"></span>
+                        </span>
+                        <div class="dropdown-menu">
+                            <a href="#" data-page="orders">
+                                <i class="fas fa-list"></i> Đơn hàng
+                            </a>
+                            <a href="#" data-page="profile">
+                                <i class="fas fa-user"></i> Thông tin cá nhân
+                            </a>
+                            <hr>
+                            <a href="#" id="logout-btn">
+                                <i class="fas fa-sign-out-alt"></i> Đăng xuất
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </nav>
         </div>
     </header>
+
+    <!-- Page Loading Overlay -->
+    <div id="page-loading">
+        <div class="page-loading-content">
+            <div class="page-loading-spinner"></div>
+            <p class="page-loading-text">Đang tải...</p>
+        </div>
+    </div>
 
     <!-- Main Content -->
     <main class="main">
         <!-- Home Page -->
         <div id="home-page" class="page active">
             <section class="hero">
-                <div class="container">
+                <div class="hero-content">
                     <h1>Chào mừng đến với Order Drink</h1>
-                    <p>Đặt đồ uống ngon, tươi mới mỗi ngày</p>
+                    <p>Đặt đồ uống ngon nhất với giá tốt nhất. Trải nghiệm hương vị tuyệt vời ngay tại nhà!</p>
                     <button class="btn btn-primary btn-large" data-page="products">Xem sản phẩm</button>
                 </div>
+                
+                <!-- Floating coffee beans -->
+                <div class="coffee-bean"></div>
+                <div class="coffee-bean"></div>
+                <div class="coffee-bean"></div>
+                <div class="coffee-bean"></div>
             </section>
             
             <section class="featured-products">
@@ -57,6 +131,7 @@
                     <div class="products-grid" id="featured-products">
                         <!-- Products will be loaded here -->
                     </div>
+                   
                 </div>
             </section>
         </div>
@@ -143,7 +218,240 @@
             </div>
         </div>
 
+        <!-- Favorites Page -->
+        <div id="favorites-page" class="page">
+            <div class="container">
+                <h1>Danh sách yêu thích</h1>
+                <div class="favorites-content" id="favorites-content">
+                    <!-- Favorites will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Notifications Page -->
+        <div id="notifications-page" class="page">
+            <div class="container">
+                <h1>Thông báo</h1>
+                <div class="notifications-content" id="notifications-content">
+                    <!-- Notifications will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Login Page -->
+        <div id="login-page" class="page">
+            <div class="container">
+                <div class="auth-container">
+                    <div class="auth-card">
+                        <div class="auth-header">
+                            <h1><i class="fas fa-sign-in-alt"></i> Đăng nhập</h1>
+                            <p>Chào mừng bạn quay trở lại!</p>
+                        </div>
+                        <form id="login-page-form">
+                            <div class="form-group">
+                                <label for="login-page-username">
+                                    <i class="fas fa-user"></i> Tên đăng nhập:
+                                </label>
+                                <input type="text" id="login-page-username" name="username" required placeholder="Nhập tên đăng nhập">
+                                <div class="form-error" id="login-page-username-error"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="login-page-password">
+                                    <i class="fas fa-lock"></i> Mật khẩu:
+                                </label>
+                                <input type="password" id="login-page-password" name="password" required placeholder="Nhập mật khẩu">
+                                <div class="form-error" id="login-page-password-error"></div>
+                            </div>
+                            <div class="form-options">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="login-page-remember-me">
+                                    <span class="checkmark"></span>
+                                    Ghi nhớ đăng nhập
+                                </label>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-full">
+                                <i class="fas fa-sign-in-alt"></i> Đăng nhập
+                            </button>
+                            <div class="form-footer">
+                                <p>Chưa có tài khoản? <a href="#" onclick="navigateToPage('register')">Đăng ký ngay</a></p>
+                                <p><a href="#" onclick="navigateToPage('home')">← Quay lại trang chủ</a></p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Register Page -->
+        <div id="register-page" class="page">
+            <div class="container">
+                <div class="auth-container">
+                    <div class="auth-card">
+                        <div class="auth-header">
+                            <h1><i class="fas fa-user-plus"></i> Đăng ký</h1>
+                            <p>Tạo tài khoản mới để trải nghiệm tốt nhất</p>
+                        </div>
+                        <form id="register-page-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="register-page-username">
+                                        <i class="fas fa-user"></i> Tên đăng nhập:
+                                    </label>
+                                    <input type="text" id="register-page-username" name="username" required placeholder="Nhập tên đăng nhập">
+                                    <div class="form-error" id="register-page-username-error"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="register-page-email">
+                                        <i class="fas fa-envelope"></i> Email:
+                                    </label>
+                                    <input type="email" id="register-page-email" name="email" required placeholder="Nhập email">
+                                    <div class="form-error" id="register-page-email-error"></div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="register-page-password">
+                                        <i class="fas fa-lock"></i> Mật khẩu:
+                                    </label>
+                                    <input type="password" id="register-page-password" name="password" required placeholder="Nhập mật khẩu">
+                                    <div class="form-error" id="register-page-password-error"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="register-page-confirm-password">
+                                        <i class="fas fa-lock"></i> Xác nhận mật khẩu:
+                                    </label>
+                                    <input type="password" id="register-page-confirm-password" name="confirmPassword" required placeholder="Nhập lại mật khẩu">
+                                    <div class="form-error" id="register-page-confirm-password-error"></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="register-page-fullname">
+                                    <i class="fas fa-id-card"></i> Họ tên:
+                                </label>
+                                <input type="text" id="register-page-fullname" name="fullName" required placeholder="Nhập họ tên đầy đủ">
+                                <div class="form-error" id="register-page-fullname-error"></div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="register-page-phone">
+                                        <i class="fas fa-phone"></i> Số điện thoại:
+                                    </label>
+                                    <input type="tel" id="register-page-phone" name="phone" required placeholder="Nhập số điện thoại">
+                                    <div class="form-error" id="register-page-phone-error"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="register-page-address">
+                                        <i class="fas fa-map-marker-alt"></i> Địa chỉ:
+                                    </label>
+                                    <input type="text" id="register-page-address" name="address" required placeholder="Nhập địa chỉ">
+                                    <div class="form-error" id="register-page-address-error"></div>
+                                </div>
+                            </div>
+                            <div class="form-options">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="register-page-agree-terms" required>
+                                    <span class="checkmark"></span>
+                                    Tôi đồng ý với <a href="#" class="terms-link">điều khoản sử dụng</a>
+                                </label>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-full">
+                                <i class="fas fa-user-plus"></i> Đăng ký
+                            </button>
+                            <div class="form-footer">
+                                <p>Đã có tài khoản? <a href="#" onclick="navigateToPage('login')">Đăng nhập ngay</a></p>
+                                <p><a href="#" onclick="navigateToPage('home')">← Quay lại trang chủ</a></p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin Dashboard Page -->
+        <div id="admin-page" class="page">
+            <div class="container">
+                <h1>Dashboard Quản trị</h1>
+                <div class="admin-dashboard" id="admin-dashboard">
+                    <!-- Admin dashboard will be loaded here -->
+                </div>
+            </div>
+        </div>
+
         <!-- About Page -->
+        <!-- Profile Page -->
+        <div id="profile-page" class="page">
+            <div class="container">
+                <h1>Thông tin cá nhân</h1>
+                <div class="profile-content">
+                    <div class="profile-info">
+                        <div class="profile-avatar">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div class="profile-details">
+                            <h2 id="profile-name">Tên người dùng</h2>
+                            <p id="profile-email">Email người dùng</p>
+                            <p id="profile-phone">Số điện thoại</p>
+                        </div>
+                    </div>
+                    <div class="profile-actions">
+                        <button class="btn btn-primary" onclick="editProfile()">Chỉnh sửa thông tin</button>
+                        <button class="btn btn-secondary" onclick="changePassword()">Đổi mật khẩu</button>
+                    </div>
+                </div>
+                
+                <!-- Edit Profile Form -->
+                <div id="edit-profile-form" class="profile-form" style="display: none;">
+                    <h2>Chỉnh sửa thông tin</h2>
+                    <form id="profile-edit-form">
+                        <div class="form-group">
+                            <label for="edit-name">Họ và tên:</label>
+                            <input type="text" id="edit-name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-email">Email:</label>
+                            <input type="email" id="edit-email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-phone">Số điện thoại:</label>
+                            <input type="tel" id="edit-phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-address">Địa chỉ:</label>
+                            <textarea id="edit-address" name="address" rows="3"></textarea>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+                            <button type="button" class="btn btn-secondary" onclick="cancelEditProfile()">Hủy</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Change Password Form -->
+                <div id="change-password-form" class="profile-form" style="display: none;">
+                    <h2>Đổi mật khẩu</h2>
+                    <form id="password-change-form">
+                        <div class="form-group">
+                            <label for="current-password">Mật khẩu hiện tại:</label>
+                            <input type="password" id="current-password" name="currentPassword" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="new-password">Mật khẩu mới:</label>
+                            <input type="password" id="new-password" name="newPassword" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm-password">Xác nhận mật khẩu mới:</label>
+                            <input type="password" id="confirm-password" name="confirmPassword" required>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Đổi mật khẩu</button>
+                            <button type="button" class="btn btn-secondary" onclick="cancelChangePassword()">Hủy</button>
+                        </div>
+                    </form>
+                </div>
+                </div>
+            </div>
+        </div>
+
         <div id="about-page" class="page">
             <div class="container">
                 <h1>Thông tin</h1>
@@ -167,17 +475,38 @@
     <div id="login-modal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <h2>Đăng nhập</h2>
+            <div class="modal-header">
+                <h2><i class="fas fa-sign-in-alt"></i> Đăng nhập</h2>
+                <p>Chào mừng bạn quay trở lại!</p>
+            </div>
             <form id="login-form">
                 <div class="form-group">
-                    <label for="login-username">Tên đăng nhập:</label>
-                    <input type="text" id="login-username" name="username" required>
+                    <label for="login-username">
+                        <i class="fas fa-user"></i> Tên đăng nhập:
+                    </label>
+                    <input type="text" id="login-username" name="username" required placeholder="Nhập tên đăng nhập">
+                    <div class="form-error" id="login-username-error"></div>
                 </div>
                 <div class="form-group">
-                    <label for="login-password">Mật khẩu:</label>
-                    <input type="password" id="login-password" name="password" required>
+                    <label for="login-password">
+                        <i class="fas fa-lock"></i> Mật khẩu:
+                    </label>
+                    <input type="password" id="login-password" name="password" required placeholder="Nhập mật khẩu">
+                    <div class="form-error" id="login-password-error"></div>
                 </div>
-                <button type="submit" class="btn btn-primary">Đăng nhập</button>
+                <div class="form-options">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="remember-me">
+                        <span class="checkmark"></span>
+                        Ghi nhớ đăng nhập
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">
+                    <i class="fas fa-sign-in-alt"></i> Đăng nhập
+                </button>
+                <div class="form-footer">
+                    <p>Chưa có tài khoản? <a href="#" id="switch-to-register">Đăng ký ngay</a></p>
+                </div>
             </form>
         </div>
     </div>
@@ -186,33 +515,79 @@
     <div id="register-modal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <h2>Đăng ký</h2>
+            <div class="modal-header">
+                <h2><i class="fas fa-user-plus"></i> Đăng ký</h2>
+                <p>Tạo tài khoản mới để trải nghiệm tốt nhất</p>
+            </div>
             <form id="register-form">
-                <div class="form-group">
-                    <label for="register-username">Tên đăng nhập:</label>
-                    <input type="text" id="register-username" name="username" required>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="register-username">
+                            <i class="fas fa-user"></i> Tên đăng nhập:
+                        </label>
+                        <input type="text" id="register-username" name="username" required placeholder="Nhập tên đăng nhập">
+                        <div class="form-error" id="register-username-error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-email">
+                            <i class="fas fa-envelope"></i> Email:
+                        </label>
+                        <input type="email" id="register-email" name="email" required placeholder="Nhập email">
+                        <div class="form-error" id="register-email-error"></div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="register-password">
+                            <i class="fas fa-lock"></i> Mật khẩu:
+                        </label>
+                        <input type="password" id="register-password" name="password" required placeholder="Nhập mật khẩu">
+                        <div class="form-error" id="register-password-error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-confirm-password">
+                            <i class="fas fa-lock"></i> Xác nhận mật khẩu:
+                        </label>
+                        <input type="password" id="register-confirm-password" name="confirmPassword" required placeholder="Nhập lại mật khẩu">
+                        <div class="form-error" id="register-confirm-password-error"></div>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label for="register-email">Email:</label>
-                    <input type="email" id="register-email" name="email" required>
+                    <label for="register-fullname">
+                        <i class="fas fa-id-card"></i> Họ tên:
+                    </label>
+                    <input type="text" id="register-fullname" name="fullName" required placeholder="Nhập họ tên đầy đủ">
+                    <div class="form-error" id="register-fullname-error"></div>
                 </div>
-                <div class="form-group">
-                    <label for="register-password">Mật khẩu:</label>
-                    <input type="password" id="register-password" name="password" required>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="register-phone">
+                            <i class="fas fa-phone"></i> Số điện thoại:
+                        </label>
+                        <input type="tel" id="register-phone" name="phone" required placeholder="Nhập số điện thoại">
+                        <div class="form-error" id="register-phone-error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-address">
+                            <i class="fas fa-map-marker-alt"></i> Địa chỉ:
+                        </label>
+                        <input type="text" id="register-address" name="address" required placeholder="Nhập địa chỉ">
+                        <div class="form-error" id="register-address-error"></div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="register-fullname">Họ tên:</label>
-                    <input type="text" id="register-fullname" name="fullName" required>
+                <div class="form-options">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="agree-terms" required>
+                        <span class="checkmark"></span>
+                        Tôi đồng ý với <a href="#" class="terms-link">điều khoản sử dụng</a>
+                    </label>
                 </div>
-                <div class="form-group">
-                    <label for="register-phone">Số điện thoại:</label>
-                    <input type="tel" id="register-phone" name="phone" required>
+                <button type="submit" class="btn btn-primary btn-full">
+                    <i class="fas fa-user-plus"></i> Đăng ký
+                </button>
+                <div class="form-footer">
+                    <p>Đã có tài khoản? <a href="#" id="switch-to-login">Đăng nhập ngay</a></p>
                 </div>
-                <div class="form-group">
-                    <label for="register-address">Địa chỉ:</label>
-                    <input type="text" id="register-address" name="address" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Đăng ký</button>
             </form>
         </div>
     </div>
