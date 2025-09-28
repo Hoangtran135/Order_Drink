@@ -1,7 +1,7 @@
-# Hoàng Trần - Ứng dụng đặt đồ uống trực tuyến
+# Order Drink - Ứng dụng đặt đồ uống trực tuyến
 
 ## Mô tả
-Ứng dụng web đặt đồ uống trực tuyến được xây dựng bằng TypeScript và Node.js với Express framework. Phát triển bởi Hoàng Trần.
+Ứng dụng web đặt đồ uống trực tuyến được xây dựng bằng TypeScript và Node.js với Express framework. Giao diện hiện đại, responsive và tối ưu cho trải nghiệm người dùng.
 
 ## Tính năng
 
@@ -25,6 +25,9 @@
 - Nhận thông báo real-time
 - Sử dụng mã giảm giá
 - Gợi ý sản phẩm thông minh
+- **Quản lý thông tin cá nhân** (mới)
+- **Chỉnh sửa profile** (mới)
+- **Đổi mật khẩu** (mới)
 - Đăng xuất
 
 ### Cho quản trị viên:
@@ -39,7 +42,7 @@
 ## Cấu trúc dự án
 
 ```
-hoang-tran-drink/
+Order-drink/
 ├── src/
 │   ├── server.ts              # Server chính
 │   ├── types/
@@ -48,13 +51,24 @@ hoang-tran-drink/
 │   │   └── mockData.ts       # Dữ liệu mẫu
 │   └── routes/
 │       ├── auth.ts           # API xác thực
-│       ├── products.ts      # API sản phẩm
-│       ├── cart.ts          # API giỏ hàng
-│       └── orders.ts        # API đơn hàng
+│       ├── profile.ts        # API quản lý profile (mới)
+│       ├── products.ts       # API sản phẩm
+│       ├── cart.ts           # API giỏ hàng
+│       ├── orders.ts         # API đơn hàng
+│       ├── payment.ts        # API thanh toán
+│       ├── reviews.ts        # API đánh giá
+│       ├── favorites.ts      # API yêu thích
+│       ├── notifications.ts  # API thông báo
+│       ├── promotions.ts     # API khuyến mãi
+│       ├── delivery.ts       # API giao hàng
+│       ├── recommendations.ts # API gợi ý
+│       ├── admin.ts         # API quản trị
+│       └── analytics.ts     # API thống kê
 ├── public/
 │   ├── index.html            # Trang chủ
 │   ├── styles.css           # CSS
 │   └── app.js               # JavaScript frontend
+├── dist/                    # Build output
 ├── package.json
 ├── tsconfig.json
 └── README.md
@@ -109,6 +123,9 @@ Mở trình duyệt và truy cập: `http://localhost:3000`
 - `POST /api/auth/register` - Đăng ký
 - `POST /api/auth/logout` - Đăng xuất
 - `GET /api/auth/me` - Kiểm tra trạng thái đăng nhập
+- `GET /api/auth/profile` - Lấy thông tin profile (mới)
+- `PUT /api/auth/profile` - Cập nhật thông tin profile (mới)
+- `POST /api/auth/change-password` - Đổi mật khẩu (mới)
 
 ### Products
 - `GET /api/products` - Lấy danh sách sản phẩm
@@ -211,8 +228,31 @@ Mở trình duyệt và truy cập: `http://localhost:3000`
 - Vanilla JavaScript
 - Font Awesome (icons)
 
+## Tính năng mới được thêm
+
+### Profile Management
+- ✅ **Quản lý thông tin cá nhân**: Xem và chỉnh sửa thông tin cá nhân
+- ✅ **Chỉnh sửa profile**: Cập nhật họ tên, email, số điện thoại, địa chỉ
+- ✅ **Đổi mật khẩu**: Thay đổi mật khẩu với xác thực mật khẩu hiện tại
+- ✅ **Giao diện responsive**: Tối ưu cho mobile và desktop
+- ✅ **Validation**: Kiểm tra dữ liệu đầu vào và hiển thị lỗi
+
+### UI/UX Improvements
+- ✅ **Navbar compact**: Giao diện navbar gọn gàng với dropdown menu
+- ✅ **Smooth transitions**: Chuyển trang mượt mà với loading states
+- ✅ **Loading states**: Hiển thị trạng thái tải với skeleton screens
+- ✅ **Error handling**: Xử lý lỗi và hiển thị thông báo user-friendly
+- ✅ **Accessibility**: Hỗ trợ keyboard navigation và screen readers
+
+### Technical Improvements
+- ✅ **TypeScript**: Type safety và better development experience
+- ✅ **Modular architecture**: Tách biệt routes và components
+- ✅ **Error boundaries**: Xử lý lỗi gracefully
+- ✅ **Performance**: Tối ưu loading và rendering
+- ✅ **Code organization**: Clean code structure và documentation
+
 ## Tác giả
-**Hoàng Trần** - Full Stack Developer
+**Order Drink Team** - Full Stack Development
 
 ## Tính năng bảo mật
 - Mã hóa mật khẩu với bcrypt
@@ -221,6 +261,39 @@ Mở trình duyệt và truy cập: `http://localhost:3000`
 
 ## Responsive Design
 Ứng dụng được thiết kế responsive, hoạt động tốt trên:
-- Desktop
-- Tablet
-- Mobile
+- Desktop (1200px+)
+- Tablet (768px - 1199px)
+- Mobile (320px - 767px)
+
+## Cài đặt nhanh
+
+### Development
+```bash
+# Clone repository
+git clone <repository-url>
+cd Order-drink
+
+# Install dependencies
+npm install
+
+# Build TypeScript
+npm run build
+
+# Start development server
+npm start
+```
+
+### Production
+```bash
+# Build for production
+npm run build
+
+# Start production server
+npm start
+```
+
+## Demo
+Truy cập ứng dụng tại: `http://localhost:3000`
+
+## License
+MIT License - Xem file LICENSE để biết thêm chi tiết.
